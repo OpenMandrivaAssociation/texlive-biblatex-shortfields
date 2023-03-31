@@ -1,6 +1,6 @@
 Name:		texlive-biblatex-shortfields
 Version:	45858
-Release:	1
+Release:	2
 Summary:	Use short forms of fields with BibLaTeX
 Group:		Publishing
 URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/biblatex-shortfields
