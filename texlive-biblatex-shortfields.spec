@@ -3,7 +3,7 @@ Version:	45858
 Release:	2
 Summary:	Use short forms of fields with BibLaTeX
 Group:		Publishing
-URL:		http://www.ctan.org/tex-archive/macros/latex/contrib/biblatex-shortfields
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/biblatex-shortfields
 License:	lppl1.3
 Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/biblatex-shortfields.r%{version}.tar.xz
 Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/biblatex-shortfields.doc.r%{version}.tar.xz
