@@ -12,7 +12,7 @@ License:	lppl1.3
 Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/biblatex-shortfields.r%{tl_revision}.tar.xz
 Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/biblatex-shortfields.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-Requires(pre):	texlive-tlpkg
+BuildSystem:	texlive
 Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
@@ -29,49 +29,3 @@ defined, it prints it instead of the \series field. It provides a
 fields. This list also includes the claves defined with the biblatex-
 claves package version 1.2 or later.
 
-%prep
-%setup -q -c -a1
-rm -rf tlpkg
-if [ -d RELOC ]; then
-	cp -a RELOC/. .
-	rm -rf RELOC
-fi
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_datadir}/texmf-dist
-# Flat tlnet layout: tex/ doc/ source/ fonts/ ... -> texmf-dist/
-if [ -d texmf-dist ]; then
-	cp -a texmf-dist/. %{buildroot}%{_datadir}/texmf-dist/
-elif [ -d texmf ]; then
-	mkdir -p %{buildroot}%{_datadir}/texmf
-	cp -a texmf/. %{buildroot}%{_datadir}/texmf/
-else
-	for d in * .[!.]* ..?*; do
-		[ -e "$d" ] || continue
-		case "$d" in tlpkg|RELOC) continue ;; esac
-		cp -a "$d" %{buildroot}%{_datadir}/texmf-dist/
-	done
-fi
-rm -rf %{buildroot}%{_datadir}/texmf-dist/tlpkg
-
-%files
-%dir %{_datadir}/texmf-dist
-%dir %{_datadir}/texmf-dist/doc
-%dir %{_datadir}/texmf-dist/tex
-%dir %{_datadir}/texmf-dist/doc/latex
-%dir %{_datadir}/texmf-dist/tex/latex
-%dir %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields
-%dir %{_datadir}/texmf-dist/tex/latex/biblatex-shortfields
-%dir %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/documentation
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/README
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/documentation/biblatex-shortfields-example.pdf
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/documentation/biblatex-shortfields-example.tex
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/documentation/biblatex-shortfields.bib
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/documentation/biblatex-shortfields.pdf
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/documentation/biblatex-shortfields.tex
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/documentation/latexmkrc
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/documentation/makefile
-%doc %{_datadir}/texmf-dist/doc/latex/biblatex-shortfields/makefile
-%{_datadir}/texmf-dist/tex/latex/biblatex-shortfields/biblatex-shortfields.sty
